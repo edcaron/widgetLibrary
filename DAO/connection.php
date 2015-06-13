@@ -1,29 +1,26 @@
 <?php
-/*
-	try
-	{
-    	$PDO = new PDO("pgsql:host=localhost dbname=library user=postgres password=postgres");
- 	} 
- 	catch (PDOException  $e) {
-    	print $e->getMessage();
- 	}
 
- 	$sql = $PDO->exec("select * from users");
+function connect() {    
+    try {
+        $conn = new PDO('pgsql:host=localhost dbname=library user=postgres password=postgres');
+    } catch (Exception $ex) {
+        print $e->getMessage();
+    }
+    return $conn;
+}
 
- 	$data = $sql->fetchAll();
- 	if($sql)
- 	{
- 		$data = $sql->fetchAll();
- 	}
- 	else
- 	{
- 		echo "error";
- 	}
 
- 	echo $data[0]["id"];
- 	*/
-
- 	$db = new PDO('pgsql:host=localhost dbname=library user=postgres password=postgres');                                       
-	$res = $db->query(  "SELECT * FROM users"  )->fetchAll(PDO::FETCH_ASSOC);
-	var_dump($res);
+/** teste de querys
+try {
+    $rs = $conn->query("SELECT * FROM users");
+    while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
+        echo $row->id . "<br />";
+        echo $row->login . "<br />";
+        echo $row->password . "<br />";
+    }
+} catch (Exception $exc) {
+    echo $exc->getTraceAsString();
+}
+ *
+ **/
 ?>
