@@ -23,9 +23,17 @@ $bookDAO = new BooksDAO();
 
 
 $arquivo = $_FILES['cover'];
-var_dump($arquivo);
 
 
+if(isset($_FILES['cover'])){
+    echo "Tem foto";
+    var_dump($arquivo);
+}else{
+    echo "Nao tem foto";
+    var_dump($arquivo);
+}
+
+/*
 preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $arquivo["name"], $ext); // Gera um nome único para a imagem 
 $imagem_nome = "img." . $ext[1];
 // Caminho de onde a imagem ficará 
@@ -50,8 +58,12 @@ $data = explode(',', $base64_string);
 fwrite($ifp, base64_decode($data[1]));
 fclose($ifp);
 
-echo "antes do echo";
-echo "<img src='../uploads/lol.png'></img>'";
+//echo "antes do echo";
+//echo "<img src='../uploads/lol.png'></img>'";
+
+*/
+
+
 
 //$book->setCover($base64);
 

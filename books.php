@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="text">Title:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="title" autofocus>
+                        <input type="text" class="form-control" id="title" required="true" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
@@ -59,7 +59,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="text">Purchase Date:</label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" id="purchase_date" >
+                        <input type="date" class="form-control" id="purchase_date" required="true">
                     </div>
                 </div> 
                 <div class="form-group">
@@ -77,7 +77,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="text">Cover:</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control" id="cover" name="cover" >
+                        <input type="file" class="form-control" id="cover" name="cover" required="true">
                     </div>
                 </div>
                 <div class="form-group">        
