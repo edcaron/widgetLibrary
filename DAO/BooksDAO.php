@@ -21,12 +21,14 @@ class BooksDAO extends DAO implements IDAO {
 
     public function insert($object) {
         $con = parent::openConnection();
+        $return = false;
         try {
-            $stmt = $con->prepare("INSERT INTO books"
+            $sql = "INSERT INTO books"
                     . " (id, title, ibsn, pages, publisher, year, language, barcode, cover, purchase_date, author, edition) VALUES"
-                    . "(default "
+                    . "(default, "
                     . "'" . $object->getTitle() . "'," . $object->getIbsn() . "," . $object->getPages() . ",'" . $object->getPublisher() . "','" . $object->getYear() . "','" . $object->getLanguage() . "'," . $object->getBarcode() . ",'" . $object->getCover() . "','" . $object->getPurchase_date() . "','" . $object->getAuthor() . "'," . $object->getEdition()
-                    . ")");
+                    . ")";
+            $stmt = $con->prepare($sql);
             $stmt->execute();
             $return = true;
         } catch (Exception $exc) {
@@ -50,8 +52,6 @@ class BooksDAO extends DAO implements IDAO {
             $result = $rs->fetchAll();
 
             var_dump($result);
-            
-            
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

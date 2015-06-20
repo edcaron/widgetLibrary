@@ -1,6 +1,6 @@
 create database library;
 create table users (id serial not null, login varchar(20), password text, primary key (id));
-create table books (id serial not null, title varchar(50) not null,ibsn int not null,pages int,publisher varchar(50),year date,language varchar(45),barcode int,cover text,purchase_date date not null, author varchar(100), edition int, primary key (id));
+create table books (id serial not null, title varchar(50) not null,ibsn int not null,pages int,publisher varchar(50),year int,language varchar(45),barcode int,cover text,purchase_date date not null, author varchar(100), edition int, primary key (id));
 
 insert into users (id, login, password) values (1, 'admin', 'admin');
 insert into books (id, title, ibsn, pages, publisher, year, language, barcode, cover, purchase_date, author, edition)
