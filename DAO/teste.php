@@ -4,10 +4,15 @@ include_once 'UsersDAO.php';
 include_once '../Model/Users.php';
 
 $a = new UsersDAO();
-$us = new Users(1, "admin", "admin");
+$us = new Users();
+
+$us->setLogin("admian");
+$us->setPassword("admin");
 
 
-$a->autenticate($us);
+$saida = $a->autenticate($us);
+
+echo "saida: ".$saida."</br>";
 
 
 

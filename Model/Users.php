@@ -6,37 +6,31 @@ class Users {
     private $login;
     private $password;
 
-    function __construct($id, $login, $password) {
-        $this->id = $id;
-        $this->login = $login;
-        $this->password = $password;
+    function __construct() {
+        
     }
-   
 
-    public function getId() {
+    function getId() {
         return $this->id;
     }
 
-    public function setId($id) {
-        $this->id = $id;
-    }
-
-    public function getLogin() {
+    function getLogin() {
         return $this->login;
     }
 
-    public function setLogin($login) {
-        $this->login;
-    }
-
-    public function getPassword() {
+    function getPassword() {
         return $this->password;
     }
 
-    public function setPassword($password) {
-        $this->password = $password;
+    function setId($id) {
+        $this->id = $id;
     }
 
-}
+    function setLogin($login) {
+        $this->login = $login;
+    }
 
-?>
+    function setPassword($password) {
+        $this->password = $password;
+    }
+}  

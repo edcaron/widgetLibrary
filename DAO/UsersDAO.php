@@ -16,26 +16,25 @@ class UsersDAO extends DAO implements IDAO {
 
     public function autenticate($object) {
         //variavel $con recebe o retorno da funcao openConnection da classe DAO
-        // o retorno e a conexao com o banco de dados
+        // o retorno e a conexao com o banco de dados        
         $con = parent::openConnection();
         try {
 //            realizar a consulta
             $sql = "SELECT id FROM users where login = '" . $object->getLogin() . "' and password = '" . $object->getPassword() . "';";
-            echo $sql;
             $rs = $con->query($sql);
 
 //                colocar os resultados na variavel $result
-            $result = $rs->fetchAll();            
-            if (isset($result[0]["id"]) ) {                
-                return true;
-            } else {                
-                return false;                
+            $result = $rs->fetchAll();
+
+            if (isset($result[0]["id"])) {
+                $return = $result[0]["id"];
+            } else {
+                $return = "false";
             }
-            var_dump($result);
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-            return false;
+        } catch (PDOException $e) {
+            echo $e->getLine() . " " . $e->getMessage();
         }
+        return $return;
     }
 
     public function insert($object) {
@@ -43,7 +42,6 @@ class UsersDAO extends DAO implements IDAO {
         // o retorno e a conexao com o banco de dados
         $con = parent::openConnection();
         try {
-
             $stmt = $con->prepare("INSERT INTO users(id, login, senha) VALUES(default '" . $object->login . "'," . $object->password . "')");
             $stmt->execute();
             return true;
@@ -81,6 +79,10 @@ class UsersDAO extends DAO implements IDAO {
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
+    }
+
+    public function listByCondition($condition) {
+        
     }
 
 }
