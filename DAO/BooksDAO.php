@@ -88,34 +88,39 @@ class BooksDAO extends DAO implements IDAO {
 
             try {
 //            realizar a consulta
-                $rs = $con->query("SELECT * FROM books where purchase_date between '$minusDAte' and '$date'");
+		$sql = "SELECT * FROM books where purchase_date between '$minusDAte' and '$date";
+                $rs = $con->query($sql);
 
 //                colocar os resultados na variavel $result
-                $result = $rs->fetchAll();
+	if($rs !=false){	
+               $result = $rs->fetchAll();
 
-                for ($i = 0; $cond == true; $i++) {
-                    if (isset($result[$i]['id'])) {
-                        $b[$i]["id"] = $result[$i]["id"];
-                        $b[$i]["title"] = ($result[$i]["title"]);
-                        $b[$i]["ibsn"] = ($result[$i]["ibsn"]);
-                        $b[$i]["pages"] = ($result[$i]["pages"]);
-                        $b[$i]["publisher"] = ($result[$i]["publisher"]);
-                        $b[$i]["language"] = ($result[$i]["language"]);
-                        $b[$i]["barcode"] = ($result[$i]["barcode"]);
+	                for ($i = 0; $cond == true; $i++) {
+	                    if (isset($result[$i]['id'])) {
+	                        $b[$i]["id"] = $result[$i]["id"];
+                       		$b[$i]["title"] = ($result[$i]["title"]);
+                	        $b[$i]["ibsn"] = ($result[$i]["ibsn"]);
+        	                $b[$i]["pages"] = ($result[$i]["pages"]);
+	                        $b[$i]["publisher"] = ($result[$i]["publisher"]);
+                        	$b[$i]["language"] = ($result[$i]["language"]);
+                	        $b[$i]["barcode"] = ($result[$i]["barcode"]);
 //                        $b[$i]["cover"] = ($result[$i]["cover"]);
-                        $b[$i]["cover"] = ("aqui vai dar um número beeeem grande xD");
-                        $b[$i]["purchase_date"] = ($result[$i]["purchase_date"]);
-                        $b[$i]["author"] = ($result[$i]["author"]);
-                        $b[$i]["edition"] = ($result[$i]["edition"]);
-                        $b[$i]["year"] = ($result[$i]["year"]);
+        	                $b[$i]["cover"] = ("aqui vai dar um número beeeem grande xD");
+	                        $b[$i]["purchase_date"] = ($result[$i]["purchase_date"]);
+                        	$b[$i]["author"] = ($result[$i]["author"]);
+                	        $b[$i]["edition"] = ($result[$i]["edition"]);
+        	                $b[$i]["year"] = ($result[$i]["year"]);
 
-                        $rturn = $b;
-                    } else {
-                        $cond = false;
-                    }
-                }
+	                        $rturn = $b;
+                	    } else {
+        	                $cond = false;
+	                    }	
+                	}
+		}else{
+			$rturn ="Não há registro de livros";
+		}
                 if ($rturn == "") {
-                    $rturn = "Não há registro entre as datas $minus3 e $date";
+                    $rturn = "Não há registro entre as datas $minusDAte e $date \n $sql";
                 }
             } catch (Exception $exc) {
                 echo $exc->getTraceAsString();
@@ -125,5 +130,4 @@ class BooksDAO extends DAO implements IDAO {
         }
         return $rturn;
     }
-
 }
