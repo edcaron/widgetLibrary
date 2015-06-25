@@ -5,8 +5,7 @@ $client = new SoapClient(null, array(
     'uri' => 'http://localhost/library/SOAP/',
     'trace' => 1));
 
-echo date('d-m-Y');
-$result = $client->books(date('d-m-Y'));
+$result = $client->books(date('Y-m-d'));
 
 if (is_soap_fault($result)) {
     trigger_error("SOAP Fault: (faultcode: {$result->faultcode},

@@ -4,7 +4,7 @@ include_once 'BooksDAO.php';
 
 $a = new BooksDAO();
 $data = date('d-m-Y');
-$saida = $a->listArrayByCondition(date('d-m-Y'));
+$saida = $a->listArrayByCondition(date('Y-m-d'));
 
 var_dump($saida);
 /*for ($i = 0; $i < 9; $i++) {

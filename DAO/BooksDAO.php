@@ -84,11 +84,11 @@ class BooksDAO extends DAO implements IDAO {
         $cond = true;
         if (isset($date)) {
             
-            $minusDAte = date('d-m-Y', strtotime("-6 days", strtotime($date)));
+            $minusDAte = date('Y-m-d', strtotime("-6 days", strtotime($date)));
 
             try {
 //            realizar a consulta
-		$sql = "SELECT * FROM books where purchase_date between '$minusDAte' and '$date";
+		$sql = "SELECT * FROM books where purchase_date between '$minusDAte' and '$date'";
                 $rs = $con->query($sql);
 
 //                colocar os resultados na variavel $result
@@ -104,8 +104,8 @@ class BooksDAO extends DAO implements IDAO {
 	                        $b[$i]["publisher"] = ($result[$i]["publisher"]);
                         	$b[$i]["language"] = ($result[$i]["language"]);
                 	        $b[$i]["barcode"] = ($result[$i]["barcode"]);
-//                        $b[$i]["cover"] = ($result[$i]["cover"]);
-        	                $b[$i]["cover"] = ("aqui vai dar um número beeeem grande xD");
+	                        $b[$i]["cover"] = ($result[$i]["cover"]);
+//        	                $b[$i]["cover"] = ("aqui vai dar um número beeeem grande xD");
 	                        $b[$i]["purchase_date"] = ($result[$i]["purchase_date"]);
                         	$b[$i]["author"] = ($result[$i]["author"]);
                 	        $b[$i]["edition"] = ($result[$i]["edition"]);
@@ -116,8 +116,8 @@ class BooksDAO extends DAO implements IDAO {
         	                $cond = false;
 	                    }	
                 	}
-		}else{
-			$rturn ="Não há registro de livros";
+			}else{
+				$rturn ="Não há registro de livr os $sql";
 		}
                 if ($rturn == "") {
                     $rturn = "Não há registro entre as datas $minusDAte e $date \n $sql";
