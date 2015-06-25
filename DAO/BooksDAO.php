@@ -44,6 +44,7 @@ class BooksDAO extends DAO implements IDAO {
 
     public function listByCondition($condition) {
         $con = parent::openConnection();
+        $cond = true;
         try {
 //            realizar a consulta
             $rs = $con->query("SELECT * FROM books where 1=1 $condition");
@@ -51,11 +52,78 @@ class BooksDAO extends DAO implements IDAO {
 //                colocar os resultados na variavel $result
             $result = $rs->fetchAll();
 
-            var_dump($result);
+            for ($i = 0; $cond == true; $i++) {
+                if (isset($result[$i]['id'])) {
+                    $b = new Books;
+                    $b->setId($result[$i]["id"]);
+                    $b->setTitle($result[$i]["title"]);
+                    $b->setIbsn($result[$i]["ibsn"]);
+                    $b->setPages($result[$i]["pages"]);
+                    $b->setPublisher($result[$i]["publisher"]);
+                    $b->setLanguage($result[$i]["language"]);
+                    $b->setBarcode($result[$i]["barcode"]);
+                    $b->setCover($result[$i]["cover"]);
+                    $b->setPurchase_date($result[$i]["purchase_date"]);
+                    $b->setAuthor($result[$i]["author"]);
+                    $b->setEdition($result[$i]["edition"]);
+                    $b->setYear($result[$i]["year"]);
+
+                    $rturn[$i] = $b;
+                } else {
+                    $cond = false;
+                }
+            }
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
+        return $rturn;
     }
 
-//put your code here
+    public function listArrayByCondition($date) {
+        $con = parent::openConnection();
+        $cond = true;
+        if (isset($date)) {
+            
+            $minusDAte = date('d-m-Y', strtotime("-6 days", strtotime($date)));
+
+            try {
+//            realizar a consulta
+                $rs = $con->query("SELECT * FROM books where purchase_date between '$minusDAte' and '$date'");
+
+//                colocar os resultados na variavel $result
+                $result = $rs->fetchAll();
+
+                for ($i = 0; $cond == true; $i++) {
+                    if (isset($result[$i]['id'])) {
+                        $b[$i]["id"] = $result[$i]["id"];
+                        $b[$i]["title"] = ($result[$i]["title"]);
+                        $b[$i]["ibsn"] = ($result[$i]["ibsn"]);
+                        $b[$i]["pages"] = ($result[$i]["pages"]);
+                        $b[$i]["publisher"] = ($result[$i]["publisher"]);
+                        $b[$i]["language"] = ($result[$i]["language"]);
+                        $b[$i]["barcode"] = ($result[$i]["barcode"]);
+//                        $b[$i]["cover"] = ($result[$i]["cover"]);
+                        $b[$i]["cover"] = ("aqui vai dar um número beeeem grande xD");
+                        $b[$i]["purchase_date"] = ($result[$i]["purchase_date"]);
+                        $b[$i]["author"] = ($result[$i]["author"]);
+                        $b[$i]["edition"] = ($result[$i]["edition"]);
+                        $b[$i]["year"] = ($result[$i]["year"]);
+
+                        $rturn = $b;
+                    } else {
+                        $cond = false;
+                    }
+                }
+                if ($rturn == "") {
+                    $rturn = "Não há registro entre as datas $minus3 e $date";
+                }
+            } catch (Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        } else {
+            $rturn = "Data incorreta";
+        }
+        return $rturn;
+    }
+
 }

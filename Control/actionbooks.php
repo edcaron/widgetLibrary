@@ -35,7 +35,6 @@ if ($action == "insert") {
     echo "nao etro";
 }
 
-
 if ($msg == 1) {
     header("Location:../books.php?msg=$msg");
 } else {

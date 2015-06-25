@@ -20,14 +20,14 @@ class UsersDAO extends DAO implements IDAO {
         $con = parent::openConnection();
         try {
 //            realizar a consulta
-            $sql = "SELECT id FROM users where login = '" . $object->getLogin() . "' and password = '" . $object->getPassword() . "';";
+            $sql = "SELECT id, login FROM users where login = '" . $object->getLogin() . "' and password = '" . $object->getPassword() . "';";
             $rs = $con->query($sql);
 
 //                colocar os resultados na variavel $result
             $result = $rs->fetchAll();
 
             if (isset($result[0]["id"])) {
-                $return = $result[0]["id"];
+                $return = $result[0]["login"];
             } else {
                 $return = "false";
             }

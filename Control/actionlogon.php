@@ -3,25 +3,25 @@
 require_once("../Model/Users.php");
 require_once("../DAO/UsersDAO.php");
 
-$book = new Users();
-$bookDAO = new UsersDAO;
-
-$book->setLogin($_POST["inputEmail"]);
-$book->setPassword($_POST["inputPassword"]);
-
-//$fp = fopen("/var/www/html/library/my-errors.log", "a");
-//
-//// Escreve "exemplo de escrita" no bloco1.txt
-//$escreve = fwrite($fp, "teste ".$_POST["inputEmail"]);
-//
-//// Fecha o arquivo
-//fclose($fp);
-
-$msg = $bookDAO->autenticate($book);
+if ($_GET['act'] == 'logout') {
+    session_start();
+    session_destroy();
+    $msg ="false";
+} else {
 
 
-if ($msg == !"false") {
-    header("Location:../index.php?msg=$msg");
+    $book = new Users();
+    $bookDAO = new UsersDAO;
+
+    $book->setLogin($_POST["inputEmail"]);
+    $book->setPassword($_POST["inputPassword"]);
+
+    $msg = $bookDAO->autenticate($book);
+}
+if ($msg != "false") {
+    session_start();
+    $_SESSION['user'] = $msg;
+    header("Location:../books.php?");
 } else {
     header("Location:../index.php?msg=$msg");
 }

@@ -1,18 +1,28 @@
 <?php
 
-include_once 'UsersDAO.php';
-include_once '../Model/Users.php';
-
-$a = new UsersDAO();
-$us = new Users();
-
-$us->setLogin("admian");
-$us->setPassword("admin");
+include_once 'BooksDAO.php';
 
 
-$saida = $a->autenticate($us);
+$a = new BooksDAO();
 
-echo "saida: ".$saida."</br>";
+$saida = $a->listByCondition(" ");
+
+for ($i = 0; $i < 9; $i++) {
+    echo $saida[$i]->getId() . "\n";
+    echo $saida[$i]->getAuthor() . "\n";
+    echo $saida[$i]->getAuthor() . "\n";
+//    echo $saida[$i]->getCover() . "\n";
+    echo $saida[$i]->getEdition() . "\n";
+    echo $saida[$i]->getIbsn() . "\n";
+    echo $saida[$i]->getLanguage() . "\n";
+    echo $saida[$i]->getPages() . "\n";
+    echo $saida[$i]->getPublisher() . "\n";
+    echo $saida[$i]->getPurchase_date() . "\n";
+    echo $saida[$i]->getTitle() . "\n";
+    echo $saida[$i]->getYear() . "\n";
+    echo "\n";
+    
+}
 
 
 
