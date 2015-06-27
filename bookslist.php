@@ -57,7 +57,7 @@ if (isset($_SESSION['user'])) {
                             echo "<td>" . $b->getAuthor() . "</td>";
                             echo "<td>" . $b->getEdition() . "</td>";
                             ?>                       
-                        <td><a href = "">Edit</a><span> </span><a href = "">Delete</a></td>
+                        <td><a href = "">Edit</a><span> </span><a href = "Control/actionbooks.php?act=delete&id=<?php echo $b->getId();?>">Delete</a></td>
                         </tr>
                         <?php
                     }

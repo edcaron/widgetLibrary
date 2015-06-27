@@ -6,6 +6,7 @@ require_once("../DAO/BooksDAO.php");
 $book = new Books();
 $bookDAO = new BooksDAO();
 $action = "insert";
+$id = $_GET['id'];
 
 $action = $_GET['act'];
 
@@ -31,7 +32,9 @@ $book->setCover(imgToBase64($imagem_dir));
 
 if ($action == "insert") {
     $msg = insert($book, $bookDAO);
-} else if ($action == "") {
+} else if ($action == "delete") {
+    $msg = delete($id, $bookDAO);
+}else if ($action == "") {
     echo "nao etro";
 }
 
@@ -49,6 +52,11 @@ function insert($book, $bookDAO) {
 
 function toList($bookDAO) {
     $msg = $bookDAO->listByCondition("and 2=2");
+    return $msg;
+}
+
+function delete($id, $bookDAO){
+    $msg = $bookDAO->delete($id);
     return $msg;
 }
 
