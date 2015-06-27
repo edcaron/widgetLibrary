@@ -3,7 +3,7 @@
 $server = new SoapServer(null, array('uri' => "http://localhost/library/SOAP"));
 
 function books($date) {
-    return "resposta do servidor é essa mlk";
+    return "resposta do servidor é essa ";
 }
 
 $server->addFunction("books");

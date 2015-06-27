@@ -5,7 +5,7 @@ $server = new SoapServer(null, array('uri' => "http://localhost/library/SOAP"));
 function books($date) {
     require_once '../DAO/BooksDAO.php';
     $a = new BooksDAO();
-    $saida = $a->listArrayByCondition($date);
+    $saida = $a->listArrayByCondition(date('Y-m-d'));
     return $saida;
 }
 

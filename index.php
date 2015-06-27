@@ -40,7 +40,7 @@ if (!isset($_SESSION['user'])) {
                     <label for="inputEmail" class="sr-only">Email address</label>
                     <input type="text" id="inputEmail" name="inputEmail" class="form-control" placeholder="Login" required autofocus>
                     <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="text" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>                
+                    <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>                
                     <?php
                     if ($_GET['msg'] == "false") {
                         ?>

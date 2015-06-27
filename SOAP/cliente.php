@@ -12,7 +12,7 @@ if (is_soap_fault($result)) {
 	faultstring: {$result->faulstring})", E_ERROR);
 } else {
     echo "Resultado Encontrado : <br><br>";
-    print_r($result);
+    var_dump($result);
 }
 ?>
 
