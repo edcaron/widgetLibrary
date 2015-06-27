@@ -4,4 +4,6 @@ require_once("DAO/BooksDAO.php");
 
 $d = new BooksDAO();
 
-echo $d->delete("10");
+$a = $d->delete("9");
+
+var_dump($a);

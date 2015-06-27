@@ -48,8 +48,7 @@ session_start();
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="books.php">Books Registration</a></li>
-                        <li><a href="bookslist.php">Books List</a></li>
-                        <li><a href="">Users</a></li>                       
+                        <li><a href="bookslist.php">Books List</a></li>                            
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">

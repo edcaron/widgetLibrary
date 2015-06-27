@@ -15,13 +15,13 @@ class BooksDAO extends DAO implements IDAO {
         $con = parent::openConnection();        
         if (isset($pk)) {
             try {
-                $sql = "delete from books where id == $pk";
+                $sql = "delete from books where id = $pk";
                 $stmt = $con->prepare($sql);
                 if ($stmt != false) {
                     if ($stmt->execute()) {
                         $rturn = true;
                     } else {
-                        $rturn = "impossible to execute";
+                        $rturn = "impossible to execute $sql";
                     }
                 } else {
                     $rturn = "impossible to connect";
@@ -30,7 +30,7 @@ class BooksDAO extends DAO implements IDAO {
                 $rturn = $exc>getTraceAsString();
             }
         } else {
-            $rturn = "Missong parameter";
+            $rturn = "Missing parameter";
         }
         return $rturn;
     }

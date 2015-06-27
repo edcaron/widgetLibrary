@@ -34,15 +34,17 @@ if ($action == "insert") {
     $msg = insert($book, $bookDAO);
 } else if ($action == "delete") {
     $msg = delete($id, $bookDAO);
-}else if ($action == "") {
-    echo "nao etro";
+} else if ($action == "find") {
+    $msg = delete($id, $bookDAO);
+} else if ($action == "") {
+    echo "nao entrou";
 }
 
 if ($msg == 1) {
     header("Location:../books.php?msg=$msg");
 } else {
     echo $msg;
-    header("Location:../books.php?msg=$msg");
+    header("Location:../books.php?msg=Err$msg");
 }
 
 function insert($book, $bookDAO) {
@@ -55,7 +57,7 @@ function toList($bookDAO) {
     return $msg;
 }
 
-function delete($id, $bookDAO){
+function delete($id, $bookDAO) {
     $msg = $bookDAO->delete($id);
     return $msg;
 }
