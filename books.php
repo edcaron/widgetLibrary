@@ -46,7 +46,7 @@ if (isset($_SESSION['user'])) {
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="text">IBSN:</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="ibsn" name="ibsn">
+                            <input type="number" class="form-control" id="ibsn" name="ibsn" required="true">
                         </div>
                     </div>
                     <div class="form-group">

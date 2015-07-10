@@ -53,10 +53,10 @@ class BooksDAO extends DAO implements IDAO {
                 if ($stmt->execute()) {
                     $return = true;
                 } else {
-                    $return = "impossible to execute";
+                    $return = "impossible to execute $sql";
                 }
             } else {
-                $return = "impossible to connect";
+                $return = "impossible to connect $con->errorInfo()";
             }
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
